@@ -1,11 +1,7 @@
 const User = require('../models/User');
 const { validationResult } = require('express-validator');
 
-/**
- * @desc    Obtenir tous les utilisateurs
- * @route   GET /api/users
- * @access  Private/Admin
- */
+
 exports.getUsers = async (req, res, next) => {
   try {
     const users = await User.find();
@@ -20,11 +16,6 @@ exports.getUsers = async (req, res, next) => {
   }
 };
 
-/**
- * @desc    Obtenir un utilisateur par ID
- * @route   GET /api/users/:id
- * @access  Private/Admin
- */
 exports.getUser = async (req, res, next) => {
   try {
     const user = await User.findById(req.params.id);
@@ -45,14 +36,10 @@ exports.getUser = async (req, res, next) => {
   }
 };
 
-/**
- * @desc    Créer un utilisateur
- * @route   POST /api/users
- * @access  Private/Admin
- */
+
 exports.createUser = async (req, res, next) => {
   try {
-    // Vérification des erreurs de validation
+  
     const errors = validationResult(req);
     if (!errors.isEmpty()) {
       return res.status(400).json({ success: false, errors: errors.array() });
@@ -69,11 +56,7 @@ exports.createUser = async (req, res, next) => {
   }
 };
 
-/**
- * @desc    Mettre à jour un utilisateur
- * @route   PUT /api/users/:id
- * @access  Private/Admin
- */
+
 exports.updateUser = async (req, res, next) => {
   try {
     // Vérification des erreurs de validation
@@ -103,11 +86,7 @@ exports.updateUser = async (req, res, next) => {
   }
 };
 
-/**
- * @desc    Supprimer un utilisateur
- * @route   DELETE /api/users/:id
- * @access  Private/Admin
- */
+
 exports.deleteUser = async (req, res, next) => {
   try {
     const user = await User.findByIdAndDelete(req.params.id);

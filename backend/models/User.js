@@ -40,7 +40,6 @@ const UserSchema = new mongoose.Schema({
   }
 });
 
-// Hash du mot de passe avant sauvegarde
 UserSchema.pre('save', async function(next) {
   if (!this.isModified('password')) {
     return next();
@@ -51,12 +50,10 @@ UserSchema.pre('save', async function(next) {
   next();
 });
 
-// Méthode pour vérifier si le mot de passe est correct
 UserSchema.methods.matchPassword = async function(enteredPassword) {
   return await bcrypt.compare(enteredPassword, this.password);
 };
 
-// Méthode pour générer un JWT token
 UserSchema.methods.generateJwtToken = function() {
   return jwt.sign(
     { id: this._id, role: this.role },

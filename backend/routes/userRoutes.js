@@ -32,10 +32,8 @@ router.route('/:id')
   .put(updateDetailsValidation, updateUser)
   .delete(deleteUser);
 
-// Routes alternatives avec Basic Auth + rôle admin
 router.get('/basic', basicAuth, authorize('admin'), getUsers);
 
-// Routes alternatives avec Session Auth + rôle admin
 router.get('/session', sessionAuth, authorizeSession('admin'), getUsers);
 
 module.exports = router;

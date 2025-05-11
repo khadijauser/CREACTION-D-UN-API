@@ -1,6 +1,5 @@
 const { body } = require('express-validator');
 
-// Règles de validation pour l'inscription
 exports.registerValidation = [
   body('username')
     .notEmpty().withMessage('Le nom d\'utilisateur est requis')
@@ -27,7 +26,6 @@ exports.registerValidation = [
     })
 ];
 
-// Règles de validation pour la connexion
 exports.loginValidation = [
   body('email')
     .notEmpty().withMessage('L\'adresse email est requise')
@@ -38,7 +36,6 @@ exports.loginValidation = [
     .notEmpty().withMessage('Le mot de passe est requis')
 ];
 
-// Règles de validation pour la mise à jour des informations
 exports.updateDetailsValidation = [
   body('username')
     .optional()
@@ -51,7 +48,6 @@ exports.updateDetailsValidation = [
     .normalizeEmail()
 ];
 
-// Règles de validation pour la mise à jour du mot de passe
 exports.updatePasswordValidation = [
   body('currentPassword')
     .notEmpty().withMessage('Le mot de passe actuel est requis'),
